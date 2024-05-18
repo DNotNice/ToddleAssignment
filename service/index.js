@@ -1,2 +1,3 @@
 import { createUserService , isAuthenticated , SignIn} from "./userService.js";
-export {createUserService , isAuthenticated , SignIn}
+import { createPost } from "./postService.js";
+export {createUserService , isAuthenticated , SignIn , createPost}

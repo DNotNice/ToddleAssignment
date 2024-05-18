@@ -1,3 +1,4 @@
-import { PORT , SALT , JWT_SECRET, JWT_EXPIRY } from "./server-config.js";
+import { PORT , SALT , JWT_SECRET, JWT_EXPIRY ,BUCKET_NAME,BUCKET_REGION,ACCESS_KEY,SECRET_ACCESS_KEY} from "./server-config.js";
 import { prisma } from "./dbConfig.js";
-export {PORT , prisma , SALT , JWT_SECRET , JWT_EXPIRY}
+import { FileConfig } from "./fileConfig.js";
+export {PORT , prisma , SALT , JWT_SECRET , JWT_EXPIRY ,BUCKET_NAME,BUCKET_REGION,ACCESS_KEY,SECRET_ACCESS_KEY , FileConfig}

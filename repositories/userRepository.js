@@ -51,7 +51,11 @@ const findUser = async(data)=>{
 
 const get = async(data)=>{
     try {
-        const user = prisma.user.findUnique(data);
+        const user = prisma.user.findUnique({
+            where : {
+                id : data
+            }
+        });
         if(!user) throw new AppError("Not able to find user " , StatusCodes.NOT_FOUND);
         return user ;
     } catch (error) {

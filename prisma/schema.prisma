@@ -20,4 +20,15 @@ model User {
   name      String   
   username  String   @unique
   password  String   
+  posts     Post[]
+}
+
+model Post{
+ id       Int @id @default(autoincrement())
+ image    String 
+ content  String 
+ User     User @relation(fields: [userId] ,references: [id])
+ userId   Int 
+ commentable Boolean @default(true)
+
 }

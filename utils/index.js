@@ -24,7 +24,7 @@ const SuccessResp = {
 
 const createToken = (data)=>{
     try {
-        return jwt.sign(data , JWT_SECRET , {expiresIn: JWT_EXPIRY} )
+        return jwt.sign(data , JWT_SECRET  )
     } catch (error) {
         console.log(error);
         throw error ;
@@ -34,6 +34,7 @@ const createToken = (data)=>{
     try {
         return jwt.verify(token ,JWT_SECRET);
     } catch (error) {
+
             console.log('error', error);
             throw error
         
