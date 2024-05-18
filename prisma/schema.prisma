@@ -28,7 +28,7 @@ model User {
 model Post{
  id       Int @id @default(autoincrement())
  image    String 
- content  String? 
+ content  String
  User     User @relation(fields: [userId] ,references: [id] , onDelete: Cascade)
  userId   Int 
  commentable Boolean @default(true)
