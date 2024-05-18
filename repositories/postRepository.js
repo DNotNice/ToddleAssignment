@@ -1,5 +1,3 @@
-import { StatusCodes } from "http-status-codes";
-import { AppError } from "../utils/index.js";
 import { prisma } from "../config/index.js";
 
 const create = async(data)=>{

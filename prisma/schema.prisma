@@ -21,14 +21,34 @@ model User {
   username  String   @unique
   password  String   
   posts     Post[]
+  comments  Comment[]
+  likes     Like[] 
 }
 
 model Post{
  id       Int @id @default(autoincrement())
  image    String 
- content  String 
- User     User @relation(fields: [userId] ,references: [id])
+ content  String? 
+ User     User @relation(fields: [userId] ,references: [id] , onDelete: Cascade)
  userId   Int 
  commentable Boolean @default(true)
+ comments   Comment[]
+ likes      Like[]
+}
 
+model Comment{
+  id        Int @id @default(autoincrement())
+  User      User @relation(fields: [userId] , references: [id] ,onDelete: Cascade)
+  userId    Int
+  Post      Post @relation(fields: [postId] , references: [id] , onDelete: Cascade)
+  postId    Int 
+  Content   String 
+}
+
+model Like{
+  id      Int @id @default(autoincrement())
+  userId  Int
+  postId  Int
+  User    User @relation(fields: [userId] ,references: [id], onDelete: Cascade)
+  Post    Post @relation(fields: [postId] , references: [id] , onDelete: Cascade)
 }
