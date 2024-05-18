@@ -1,9 +1,8 @@
-import { createUserService } from "../service/index.js";
+import { SignIn, createUserService } from "../service/index.js";
 import { SuccessResp , ErrorResp} from "../utils/index.js";
 import { StatusCodes } from "http-status-codes";
 
     const signup = async(req ,res)=>{
-        
         const data = {
             email : req.body.email ,
             password : req.body.password , 
@@ -22,6 +21,24 @@ import { StatusCodes } from "http-status-codes";
                 else ErrorResp.error = error ;
                 return res.status(StatusCodes.BAD_REQUEST).json(ErrorResp)
             }
-}
+    }
 
-export { signup}
+    const signIn = async(req, res)=>{
+        try {
+          
+            const user = await SignIn({
+                username  : req.body.username, 
+                password : req.body.password 
+            })
+         SuccessResp.data = user ;
+         SuccessResp.message = "User Signed In Successfully";
+         return res.status(StatusCodes.CREATED).json(SuccessResp);
+        } catch (error) {
+            ErrorResp.error = error;
+            return res.status(ErrorResp.error.statusCode).json(ErrorResp);
+        }
+    }
+
+
+
+export { signup , signIn}

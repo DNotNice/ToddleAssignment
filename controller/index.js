@@ -1,2 +1,2 @@
-import { signup } from "./userController.js";
-export {signup}
+import { signup , signIn } from "./userController.js";
+export {signup , signIn}
