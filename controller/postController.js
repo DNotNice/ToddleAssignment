@@ -1,4 +1,4 @@
-import { createPost ,getAllPosts} from "../service/index.js";
+import { createPost ,getAllPosts, getPostwithId , deletePostWithId} from "../service/index.js";
 import { StatusCodes } from "http-status-codes";
 import { SuccessResp ,ErrorResp } from "../utils/index.js";
 import { FileConfig } from "../config/index.js";
@@ -40,4 +40,31 @@ const createPostController  = async(req ,res)=>{
         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(ErrorResp);
     }
  }
-export {createPostController ,getPosts}
+
+ const getPost = async(req ,res)=>{
+
+    try {
+        const resp = await getPostwithId(req.params.id);
+        SuccessResp.data = resp ;
+        SuccessResp.message ="Post fetched successfully";
+        return res.status(StatusCodes.OK).json(SuccessResp);
+    } catch (error) {
+            ErrorResp.error = error;
+            ErrorResp.message  ="Something is not right with server"
+            return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(ErrorResp);       
+    }
+}
+
+const deletePost = async(req, res)=>{
+    try {
+        const resp = await deletePostWithId(req.params.id);
+        SuccessResp.data = resp ;
+        SuccessResp.message ="Post deleted successfully";
+        return res.status(StatusCodes.OK).json(SuccessResp);
+    } catch (error) {
+        ErrorResp.error = error;
+        ErrorResp.message  ="Something is not right with server"
+        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(ErrorResp); 
+    }
+}
+export {createPostController ,getPosts ,getPost , deletePost}

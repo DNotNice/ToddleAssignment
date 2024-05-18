@@ -1,4 +1,4 @@
-import { create , getPosts} from "../repositories/index.js";
+import { create , getPosts ,getPost, deletePost} from "../repositories/index.js";
 import { StatusCodes } from "http-status-codes";
 import { AppError } from "../utils/index.js";
 
@@ -20,4 +20,21 @@ const getAllPosts = async()=>{
     }
 
 }
-export { createPost ,getAllPosts}
+const getPostwithId = async(id)=>{
+    try {
+        const post = await getPost(id);
+        return post ;
+    } catch (error) {
+        throw new AppError("Something went wrong while fetching post" , StatusCodes.INTERNAL_SERVER_ERROR)
+    }
+}
+const deletePostWithId = async(id)=>{
+    try {
+        const post = await deletePost(id);
+        return post ;
+    } catch (error) {
+        throw new AppError("Something went wrong while deleting post" , StatusCodes.INTERNAL_SERVER_ERROR);
+    }
+}
+
+export { createPost ,getAllPosts ,getPostwithId , deletePostWithId}
