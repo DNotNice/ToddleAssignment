@@ -7,7 +7,8 @@ const create = async(data)=>{
         data : {
             content : data.content ,
             image : data.image ,
-            userId : data.userId
+            userId : data.userId,
+            commentable : data.commentable
         }
     });
     return post ;

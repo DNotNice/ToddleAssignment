@@ -44,7 +44,8 @@ const createPostController  = async(req ,res)=>{
  const getPost = async(req ,res)=>{
 
     try {
-        const resp = await getPostwithId(req.params.id);
+        const postId  =  parseInt(req.params.id)
+        const resp = await getPostwithId(postId);
         SuccessResp.data = resp ;
         SuccessResp.message ="Post fetched successfully";
         return res.status(StatusCodes.OK).json(SuccessResp);
@@ -57,7 +58,8 @@ const createPostController  = async(req ,res)=>{
 
 const deletePost = async(req, res)=>{
     try {
-        const resp = await deletePostWithId(req.params.id);
+        const postId = parseInt(req.params.id)
+        const resp = await deletePostWithId(postId);
         SuccessResp.data = resp ;
         SuccessResp.message ="Post deleted successfully";
         return res.status(StatusCodes.OK).json(SuccessResp);
